@@ -1,5 +1,8 @@
 # Trajectory2XYZ_zip_lammps
 
+The LAMMPS Trajectory Parser is a tool for extracting some *.xyz files from a lammps trajectory file.
++ https://personalresearchdata.github.io/Trajectory2XYZ_zip_lammps/
+
 ## How to use
 1. Click the [ファイルを選択] button and Upload LAMMPS Trajectory File
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/7b1e511f-8679-4839-8bb7-6aa1c9ca9726" />
