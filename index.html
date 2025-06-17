@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAMMPS Trajectory to XYZ Converter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <!-- JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-file-earmark-text"></i> LAMMPS Trajectory Parser
+            </span>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="bi bi-gear"></i> Convert LAMMPS Trajectory to XYZ Files</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="parserForm">
+                            <div class="mb-4">
+                                <label for="fileInput" class="form-label">
+                                    <i class="bi bi-cloud-upload"></i> Upload LAMMPS Trajectory File
+                                </label>
+                                <input type="file" class="form-control" id="fileInput" accept=".lammpstrj" required>
+                                <div class="form-text">Select a .lammpstrj file to process</div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="startTimestep" class="form-label">
+                                        <i class="bi bi-play-circle"></i> Start Timestep
+                                    </label>
+                                    <input type="number" class="form-control" id="startTimestep" min="0" placeholder="e.g., 0" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="endTimestep" class="form-label">
+                                        <i class="bi bi-stop-circle"></i> End Timestep
+                                    </label>
+                                    <input type="number" class="form-control" id="endTimestep" min="0" placeholder="e.g., 1000" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="zipOption" checked>
+                                    <label class="form-check-label" for="zipOption">
+                                        <i class="bi bi-file-earmark-zip"></i> Download as ZIP file
+                                        <small class="text-muted d-block">Uncheck to download individual XYZ files</small>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="processBtn">
+                                    <i class="bi bi-gear-fill"></i> Process File
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="card mt-4 shadow-sm d-none" id="progressSection">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-hourglass-split"></i> Processing...</h5>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="card mt-4 shadow-sm d-none" id="outputSection">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-terminal"></i> Output Log</h5>
+                        <pre id="output" class="output-log"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted">LAMMPS Trajectory Parser | Convert .lammpstrj to .xyz format</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
